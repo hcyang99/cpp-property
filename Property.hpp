@@ -11,6 +11,8 @@
 #pragma once
 namespace MyProperty
 {
+    // The default set handler
+    // A set handler should either return true when the requirements are met, false otherwise
     template <typename T>
     struct __DefaultSetHandler
     {
@@ -20,6 +22,7 @@ namespace MyProperty
         }
     };
 
+    // A Property class whose get and set functions can be called as if itself being used as a value
     template <typename T, typename SetHandler = __DefaultSetHandler<T>>
     class Property
     {
@@ -38,6 +41,9 @@ namespace MyProperty
             T value;
     };
 
+    // A Read-only property class
+    // "C" is the class in which this property is defined
+    // set function not visible outside that class
     template <typename T, typename C, typename SetHandler = __DefaultSetHandler<T>>
     class ReadOnlyProperty
     {
